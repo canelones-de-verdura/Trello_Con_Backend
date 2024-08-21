@@ -3,11 +3,11 @@ body {
     background-color: rgb(181, 191, 226);
 }
 
-.title-cont {}
+.title-container {}
 
 .Titulo {}
 
-.container {
+.column-container {
     display: flex;
 }
 
