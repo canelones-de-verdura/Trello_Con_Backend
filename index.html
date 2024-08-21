@@ -7,16 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trello Falso</title>
     <script async src="main.js"></script>
+
+    <!-- css nuestro -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 
 <body>
-    <div class="title-container">
-        <h1 class="Titulo">Gestor de tareas</h1>
+    <div>
+        <h1 class="title is-1">Gestor de tareas</h1>
     </div>
-    <div class="column-container">
-        <div class="column" id="backlog">
-            <h2 class="NombreColumnas">Backlog</h2>
+    <div class="columns">
+        <div class="column has-background-primary" id="backlog">
+            <h2 class="subtitle is-3">Backlog</h2>
             <div class="tareas" id="Espera1">
                 <p class="NombreSubColumnas">Trabajo1</p>
             </div>
@@ -33,7 +38,7 @@
         </div>
 
         <div class="column" id="to-do">
-            <h2 class="NombreColumnas">To-Do</h2>
+            <h2 class="subtitle is-3">To-Do</h2>
             <div class="tareas" id="Hacer1">
                 <p class="NombreSubColumnas">Haciendo1</p>
             </div>
@@ -45,8 +50,8 @@
             </div>
         </div>
 
-        <div class="column" id="in-progress">
-            <h2 class="NombreColumnas">In-Progress</h2>
+        <div class="column has-background-primary" id="in-progress">
+            <h2 class="subtitle is-3">In-Progress</h2>
             <div class="tareas" id="EnProceso1">
                 <p class="NombreSubColumnas">EnPRogreso1</p>
             </div>
@@ -64,8 +69,8 @@
             </div>
         </div>
 
-        <div class="column" id="blocked">
-            <h2 class="NombreColumnas">Blocked</h2>
+        <div class="column has-background-primary" id="blocked">
+            <h2 class="subtitle is-3">Blocked</h2>
             <div class="tareas" id="Bloqueado1">
                 <p class="NombreSubColumnas">Bloqueado1</p>
             </div>
@@ -74,8 +79,8 @@
             </div>
         </div>
 
-        <div class="column" id="done">
-            <h2 class="NombreColumnas">Done</h2>
+        <div class="column has-background-primary" id="done">
+            <h2 class="subtitle is-3">Done</h2>
             <div class="tareas" id="terminado1">
                 <p class="NombreSubColumnas">Terminado</p>
             </div>
