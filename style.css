@@ -1,6 +1,11 @@
 body {
     font-family: Ubuntu, sans-serif;
+    background-color: rgb(181, 191, 226);
 }
+
+.title-cont {}
+
+.Titulo {}
 
 .container {
     display: flex;
