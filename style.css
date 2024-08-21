@@ -1,0 +1,15 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    border-radius: 15px;
+
+    color: rgb(198, 208, 245);
+    background-color: rgb(48, 52, 70);
+    font-family: Ubuntu, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
