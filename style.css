@@ -24,13 +24,26 @@ body {
     /*color: rgb(181, 191, 226);*/
 }
 
+.menu-bar {
+    width: 100vw;
+}
+
 .subtitle {
     font-weight: bold;
 }
 
-.columns {
-    margin-left: 5px;
-    margin-right: 5px;
+@media (min-width: 768px) {
+    .column {
+        flex-basis: calc(100% / 3);
+        /* 3 columns per row */
+    }
+}
+
+@media (min-width: 1440px) {
+    .columns {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 }
 
 .column {
