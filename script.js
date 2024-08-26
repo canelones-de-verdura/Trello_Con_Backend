@@ -1,7 +1,7 @@
 // Cambiar modo claro / modo oscuro
 const theme_switch = document.getElementById("theme-switcher");
 theme_switch.addEventListener("click", () => {
-     // Cambiar tema en el HTML
+    // Cambiar tema en el HTML
     document.getElementsByTagName("html")[0].classList.toggle("theme-dark");
 
     // Cambiar el ícono del botón
@@ -13,7 +13,8 @@ theme_switch.addEventListener("click", () => {
 // Modal
 const add_task = document.getElementById("add-task");
 add_task.addEventListener("click", () => {
-    const modal = spawn_modal();
+    // const modal = spawn_modal();
+    const modal = document.getElementById("task-menu")
     setup_modal(modal, null);
 });
 
