@@ -1,57 +1,50 @@
+@import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
+
+:root {
+    --bg-color: var(--ctp-latte-base);
+    --txt-color: var(-ctp-latte-text);
+}
+
+.dark-theme {
+    --bg-color: var(--ctp-frappe-base);
+    --txt-color: var(--ctp-frappe-text);
+}
+
 body {
     font-family: Ubuntu, sans-serif;
-    background-color: rgb(181, 191, 226);
+
+    /* Pintamos TODO el fondo */
+    /*Hay que mandar el tamaño, así que indicamos todo el viewport*/
+    background-color: var(--bg-color);
+    height: 100vh;
 }
 
-.title-container {}
-
-.Titulo {
-    text-align: center;
-    font: oblique bold 120% cursive;
-    font-size: 300%;
-    color:rgb(42, 40, 81);
+.title {
+    color: var(--txt-color);
+    /*color: rgb(181, 191, 226);*/
 }
+
+.menu-bar {
+    width: 100vw;
+}
+
+.Titulo {}
 
 .column-container {
     display: flex;
-    align-items: center;
 }
 
 .column {
-    width: 300px;
-    padding: 20px;
-    border-radius: 15px;
-    margin-left: 5px;
-    margin-right: 5px;
-
     color: rgb(198, 208, 245);
     background-color: rgb(48, 52, 70);
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
 }
 
 .NombreColumnas {
     align-self: center;
     font-weight: bold;
-}
-
-.tareas{
-    width: 300px;
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-
-    color: rgb(198, 208, 245);
-    background-color: rgb(87, 94, 128);
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-
-    
 }
