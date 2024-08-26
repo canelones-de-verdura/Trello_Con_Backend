@@ -11,6 +11,13 @@ theme_switch_button.addEventListener("click", () => {
 });
 
 // Obtener referencias a los elementos del DOM
+const exit_modal = document.getElementsByClassName("modal-background")[0];
+exit_modal.addEventListener("click", () => {
+    document.getElementsByClassName("modal")[0].classList.remove("is-active");
+});
+*/
+
+// Lógica para el modal y agregar tareas
 const addTaskButton = document.getElementById("add-task");
 const modal = document.querySelector(".modal");
 const cancelModalButton = modal.querySelector(".delete");
@@ -22,7 +29,7 @@ addTaskButton.addEventListener("click", () => {
     modal.classList.add("is-active");
 });
 
-// Ocultar el modal al hacer clic en cancelar o fuera del modal
+// Ocultar el modal
 cancelModalButton.addEventListener("click", () => {
     modal.classList.remove("is-active");
 });
@@ -31,8 +38,9 @@ modal.querySelector(".modal-background").addEventListener("click", () => {
     modal.classList.remove("is-active");
 });
 
-// Crear y agregar la nueva tarea cuando se haga clic en "Aceptar"
+// Crear y agregar la nueva tarea
 acceptModalButton.addEventListener("click", () => {
+
     const title = modal.querySelector("input[type='text']").value;
     const description = modal.querySelectorAll("input[type='text']")[1].value;
 
@@ -59,9 +67,12 @@ acceptModalButton.addEventListener("click", () => {
     taskDiv.innerHTML = `<strong>${title}</strong><p>${description}</p>`;
 
     // Añadir la tarea a la columna de Backlog
+
     backlogColumn.appendChild(taskDiv);
 
     // Limpiar y cerrar el modal
-    modal.querySelectorAll("input[type='text']").forEach(input => input.value = "");
+    modal.querySelectorAll("input").forEach(input => input.value = "");
     modal.classList.remove("is-active");
+
 });
+
