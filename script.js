@@ -15,7 +15,7 @@ const exit_modal = document.getElementsByClassName("modal-background")[0];
 exit_modal.addEventListener("click", () => {
     document.getElementsByClassName("modal")[0].classList.remove("is-active");
 });
-*/
+
 
 // Lógica para el modal y agregar tareas
 const addTaskButton = document.getElementById("add-task");
