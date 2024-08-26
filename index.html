@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trello Falso</title>
 
+    <script async src="task.js"></script>
     <script async src="modal.js"></script>
     <script async src="script.js"></script>
 
@@ -31,7 +32,9 @@
         <button class="button is-small" id="theme-switcher">
             <span class="material-symbols-outlined">dark_mode</span>
         </button>
-        <button class="button is-small" id="add-task">agregar tarea</button>
+        <button class="button is-small" id="add-task">
+            <span class="material-symbols-outlined">add_task</span>
+        </button>
     </div>
 
     <!--Columnas-->
@@ -64,7 +67,7 @@
     </div>
 
     <!-- Diálogo para agregar/editar tareas -->
-    <div class="modal"></div>
+    <div class="modal" id="task-menu"></div>
 </body>
 
 </html>
