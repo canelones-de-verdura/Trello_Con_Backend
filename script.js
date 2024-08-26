@@ -1,15 +1,13 @@
 // Cambiar modo claro / modo oscuro
 const theme_switch = document.getElementById("theme-switcher");
 theme_switch.addEventListener("click", () => {
-    // Cambiamos tema
+     // Cambiar tema en el HTML
     document.getElementsByTagName("html")[0].classList.toggle("theme-dark");
 
-    // Cambiamos ícono
-    const icon = theme_switch.getElementsByTagName("span")[0].innerText;
-    if (icon == "dark_mode")
-        theme_switch.getElementsByTagName("span")[0].innerText = "light_mode";
-    else
-        theme_switch.getElementsByTagName("span")[0].innerText = "dark_mode";
+    // Cambiar el ícono del botón
+    const iconSpan = theme_switch_button.querySelector("span");
+    const icon = iconSpan.innerText;
+    iconSpan.innerText = (icon === "dark_mode") ? "light_mode" : "dark_mode";
 });
 
 // Modal
