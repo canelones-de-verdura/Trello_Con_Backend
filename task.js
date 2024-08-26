@@ -33,5 +33,19 @@ function new_task(titulo, desc, asignado, prioridad, fecha_limite) {
     title_field.innerHTML = `<strong>${titulo}</strong>`
     text_field.innerHTML = `<p>${desc}</p>`;
 
+    // Asignar un ID único a la tarea
+    const uniqueId = 'task-' + new Date().getTime();
+    task.setAttribute("id", uniqueId);
+
+    // Añadir eventos de arrastrar y soltar a la tarea, es necesario que sea cuando son creados porque sino no lo toma
+    task.addEventListener('dragstart', (event) => {
+        event.dataTransfer.setData('text/plain', event.target.id);
+        task.classList.add('dragging');
+    });
+
+    task.addEventListener('dragend', () => {
+        task.classList.remove('dragging');
+    });
+
     backlogColumn.appendChild(task);
 }

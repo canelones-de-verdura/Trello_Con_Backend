@@ -5,7 +5,7 @@ theme_switch.addEventListener("click", () => {
     document.getElementsByTagName("html")[0].classList.toggle("theme-dark");
 
     // Cambiar el ícono del botón
-    const iconSpan = theme_switch_button.querySelector("span");
+    const iconSpan = theme_switch.querySelector("span");
     const icon = iconSpan.innerText;
     iconSpan.innerText = (icon === "dark_mode") ? "light_mode" : "dark_mode";
 });
