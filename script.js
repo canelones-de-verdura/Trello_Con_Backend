@@ -21,9 +21,9 @@ add_task.addEventListener("click", () => {
     const menu = document.getElementsByClassName("modal")[0];//.classList.add("is-active");
     spawn_modal(menu);
 
-    const exit_modal = document.getElementsByClassName("modal-background")[0];
+    const exit_modal = menu.getElementsByClassName("modal-background")[0];
     exit_modal.addEventListener("click", () => {
-        document.getElementsByClassName("modal")[0].classList.remove("is-active");
+        menu.classList.remove("is-active");
     });
 });
 
