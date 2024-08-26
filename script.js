@@ -18,10 +18,13 @@ theme_switch.addEventListener("click", () => {
 // Modal
 const add_task = document.getElementById("add-task");
 add_task.addEventListener("click", () => {
-    document.getElementsByClassName("modal")[0].classList.add("is-active");
+    const menu = document.getElementsByClassName("modal")[0];//.classList.add("is-active");
+    spawn_modal(menu);
+
+    const exit_modal = document.getElementsByClassName("modal-background")[0];
+    exit_modal.addEventListener("click", () => {
+        document.getElementsByClassName("modal")[0].classList.remove("is-active");
+    });
 });
 
-const exit_modal = document.getElementsByClassName("modal-background")[0];
-exit_modal.addEventListener("click", () => {
-    document.getElementsByClassName("modal")[0].classList.remove("is-active");
-});
+
