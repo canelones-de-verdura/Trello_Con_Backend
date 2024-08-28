@@ -163,12 +163,17 @@ function crearCartaConModal() {
     cartaPrincipal.classList.remove('dragging');
     });
 
+    
+
         // Agregar la carta principal al contenedor de cartas (e.g., backlogColumn)
         backlogColumn.appendChild(cartaPrincipal);
 
         // Limpiar y cerrar el modal
         modal.querySelectorAll("input").forEach(input => input.value = "");
         modal.classList.remove("is-active");
+
+        saveColumnsContent();
+    
     }
 }
 
@@ -178,5 +183,56 @@ function borrarCarta(botonEliminar){
     //Borra la carta 
     const cartaPorEliminar= botonEliminar.parentElement.parentElement;
     cartaPorEliminar.remove();
-    guardarCartas();
+    saveColumnsContent();
   }
+ 
+  function saveColumnsContent() {
+    const columns = ['backlog', 'to-do', 'in-progress', 'blocked', 'done'];
+
+    columns.forEach(columnId => {
+        const columnContent = document.getElementById(columnId).innerHTML;
+        localStorage.setItem(columnId, columnContent);
+    });
+
+    console.log("Contenido guardado en localStorage.");
+}
+
+function reasginarEventos() {
+    // Reasignar el evento de clic para los botones de eliminar
+    document.querySelectorAll('.eliminar').forEach(button => {
+        button.addEventListener('click', function() {
+            borrarCarta(this); //3 horas jodido por este this  ._.
+        });
+        console.log("Evento eliminar reasignado");
+    });
+
+    // Reasignar eventos de arrastrar y soltar para las cartas
+    document.querySelectorAll('.contenedor_tarea').forEach(taskDiv => {
+        taskDiv.addEventListener('dragstart', (event) => {
+            event.dataTransfer.setData('text/plain', event.target.id);
+            taskDiv.classList.add('dragging');
+        });
+
+        taskDiv.addEventListener('dragend', () => {
+            taskDiv.classList.remove('dragging');
+        });
+    });
+}
+
+function loadColumnsContent() {
+    const columns = ['backlog', 'to-do', 'in-progress', 'blocked', 'done'];
+
+    columns.forEach(columnId => {
+        const savedContent = localStorage.getItem(columnId);
+        if (savedContent) {
+            document.getElementById(columnId).innerHTML = savedContent;
+        }
+    });
+
+    // Reasignar eventos después de cargar el contenido
+    reasginarEventos();
+
+    console.log("Contenido cargado desde localStorage.");
+}
+
+window.addEventListener("load", loadColumnsContent);
