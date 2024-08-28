@@ -26,7 +26,8 @@ add_task_btn.addEventListener("click", () => {
     //dashboard.columns[new_task.priority].placeCard(new_task);
 
     // Agregamos el listener en la tarjeta nueva
-    new_task.element.addEventListener("click", () => menu.spawn(new_task));
+    //new_task.element.querySelector(".card-content").addEventListener("click", () => menu.spawn(new_task));
+    //new_task.element.querySelector(".card-header-icon").addEventListener("click", () => new_task.delete());
 });
 
 // Cerrar el modal al hacer clic en el fondo
