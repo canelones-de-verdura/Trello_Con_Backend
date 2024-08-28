@@ -1,75 +1,24 @@
-@import url('https://unpkg.com/@catppuccin/palette/css/catppuccin.css');
-
-:root {
-    --bg-color: var(--ctp-latte-base);
-    --txt-color: var(-ctp-latte-text);
-}
-
-.dark-theme {
-    --bg-color: var(--ctp-frappe-base);
-    --txt-color: var(--ctp-frappe-text);
-}
-
 body {
     font-family: Ubuntu, sans-serif;
-
-    /* Pintamos TODO el fondo */
-    /*Hay que mandar el tamaño, así que indicamos todo el viewport*/
-    background-color: var(--bg-color);
     height: 100vh;
+    padding: 20px;
 }
 
-.title {
-    color: var(--txt-color);
-    /*color: rgb(181, 191, 226);*/
+.modal-card {
+    width: 80%;
+    height: 90%;
 }
 
-.menu-bar {
-    width: 100vw;
-}
-
-.subtitle {
-    font-weight: bold;
-}
-
-@media (min-width: 768px) {
-    .column {
-        flex-basis: calc(100% / 3);
-        /* 3 columns per row */
+@media (width >=768px) {
+    .modal-card {
+        width: 80%;
+        height: 80%;
     }
 }
 
-@media (min-width: 1440px) {
-    .columns {
-        margin-left: 5px;
-        margin-right: 5px;
+@media (width >=1440px) {
+    .modal-card {
+        width: 80%;
+        height: 80%;
     }
 }
-
-.column {
-    color: rgb(198, 208, 245);
-    background-color: rgb(181, 191, 226);
-
-    border-radius: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    /*padding: 20px;*/
-}
-
-/*.tareas {*/
-/*    width: 300px;*/
-/*    padding: 20px;*/
-/*    border-radius: 15px;*/
-/*    margin-top: 5px;*/
-/*    margin-bottom: 5px;*/
-/**/
-/*    color: rgb(198, 208, 245);*/
-/*    background-color: rgb(87, 94, 128);*/
-/**/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: flex-start;*/
-/*    position: relative;*/
-/*}*/
