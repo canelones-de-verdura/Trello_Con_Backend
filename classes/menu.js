@@ -55,9 +55,16 @@ class taskMenu {
             confirm_button.addEventListener("click", () => {
                 const args = this.recoverInput();
 
-                task.fill(args[0], args[1], args[2], args[3], args[4], args[5]);
-                task.delete();
-                dashboard[args[4]].placeCard(task);
+                if (args[0] && args[1] && args[2] && args[3] && args[4] && args[5]) {
+                    task.fill(args[0], args[1], args[2], args[3], args[4], args[5]);
+                    dashboard[args[4]].placeCard(task);
+                    task.element.querySelector(".card-content").addEventListener("click", () => menu.spawn(task));
+                    task.element.querySelector(".card-header-icon").addEventListener("click", () => task.delete());
+                    this.close();
+                }
+                else {
+                    alert("Ingrese todos los datos.");
+                }
 
                 this.close();
             });
@@ -77,20 +84,21 @@ class taskMenu {
         const asignado = this.element.querySelector("#asignado").value;
         const prioridad = this.element.querySelector("#prioridad").value;
         const estado = this.element.querySelector("#estado").value;
-        //const fecha_limite = this.element.querySelectorAll("#fecha_limite").value;
-        const fecha_limite = null;
+        const fecha_limite = new Date(this.element.querySelectorAll("#fecha_limite").value);
 
-        // TODO agregar validación del input
+        if (!titulo || !descripcion || !asignado || !prioridad || !estado || !fecha_limite)
+            alert("Ingrese todos los datos.");
 
         return [titulo, descripcion, asignado, prioridad, estado, fecha_limite];
     }
 
     clearInput() {
-        this.element.querySelector("#titulo").value = "";
-        this.element.querySelector("#descripcion").value = "";
-        this.element.querySelector("#asignado").value = "";
-        this.element.querySelector("#prioridad").value = "";
-        this.element.querySelector("#estado").value = "";
+        // TODO: arreglar esto. Así como está tranca los inputs y no deja escribir nada
+        //this.element.querySelector("#titulo").value = "";
+        //this.element.querySelector("#descripcion").value = "";
+        //this.element.querySelector("#asignado").value = "";
+        //this.element.querySelector("#prioridad").value = "";
+        //this.element.querySelector("#estado").value = "";
     }
 
     close() {
