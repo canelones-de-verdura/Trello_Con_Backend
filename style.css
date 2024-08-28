@@ -17,16 +17,18 @@ body {
     
 }
 
-/*.columns {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    gap: 1rem;*/
-/*}*/
-/**/
-/*.column {*/
-/*    flex: 1 1 30%;*/
-/*    min-width: 250px;*/
-/*}*/
+/*
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.column {
+    flex: 1 1 30%;
+    min-width: 250px;
+}
+*/
 
 @media (min-width >=1440px) {
     .modal-card {
