@@ -24,6 +24,7 @@ class taskMenu {
         });
     }
 
+    //TODO ARREGLAR CHANCHADA
     /***
      * Termina de configurar el modal y lo muestra.
      * @param task Tarea a editar. Si es null, se crea una tarea nueva
