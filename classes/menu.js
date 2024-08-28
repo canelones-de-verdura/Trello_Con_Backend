@@ -32,34 +32,40 @@ class taskMenu {
     spawn(task, dashboard) {
         let title = "";
         const confirm_button = this.btn_holder.children[1];
-        const delete_button = this.btn_holder.children[2];
 
         if (task.is_empty) {
             title = "Nueva tarea";
             confirm_button.innerText = "Agregar tarea";
-            delete_button.classList.add("is-hidden");
 
             confirm_button.addEventListener("click", () => {
                 const args = this.recoverInput();
 
-                console.log(args);
-
-
                 task.fill(args[0], args[1], args[2], args[3], args[4], args[5]);
                 dashboard[args[4]].placeCard(task);
+
+                task.element.querySelector(".card-content").addEventListener("click", () => menu.spawn(task));
+                task.element.querySelector(".card-header-icon").addEventListener("click", () => task.delete());
+
                 this.close();
             });
         } else {
             title = "Editar tarea";
             confirm_button.innerText = "Aceptar";
-            delete_button.innerText = "Eliminar Tarjeta";
-            delete_button.classList.remove("is-hidden");
-
-            delete_button.addEventListener("click", () => {
-                // TODO
-            });
 
             confirm_button.addEventListener("click", () => {
+                const args = this.recoverInput();
+
+                if (args[0] && args[1] && args[2] && args[3] && args[4] && args[5]) {
+                    task.fill(args[0], args[1], args[2], args[3], args[4], args[5]);
+                    dashboard[args[4]].placeCard(task);
+                    task.element.querySelector(".card-content").addEventListener("click", () => menu.spawn(task));
+                    task.element.querySelector(".card-header-icon").addEventListener("click", () => task.delete());
+                    this.close();
+                }
+                else {
+                    alert("Ingrese todos los datos.");
+                }
+
                 this.close();
             });
         }
@@ -78,27 +84,27 @@ class taskMenu {
         const asignado = this.element.querySelector("#asignado").value;
         const prioridad = this.element.querySelector("#prioridad").value;
         const estado = this.element.querySelector("#estado").value;
-        //const fecha_limite = this.element.querySelectorAll("#fecha_limite").value;
-        const fecha_limite = null;
+        const fecha_limite = new Date(this.element.querySelectorAll("#fecha_limite").value);
 
-        // TODO agregar validación del input
+        if (!titulo || !descripcion || !asignado || !prioridad || !estado || !fecha_limite)
+            alert("Ingrese todos los datos.");
 
         return [titulo, descripcion, asignado, prioridad, estado, fecha_limite];
     }
 
     clearInput() {
-        this.element.querySelector("#titulo").value = "";
-        this.element.querySelector("#descripcion").value = "";
-        this.element.querySelector("#asignado").value = "";
-        this.element.querySelector("#prioridad").value = "";
-        this.element.querySelector("#estado").value = "";
+        // TODO: arreglar esto. Así como está tranca los inputs y no deja escribir nada
+        //this.element.querySelector("#titulo").value = "";
+        //this.element.querySelector("#descripcion").value = "";
+        //this.element.querySelector("#asignado").value = "";
+        //this.element.querySelector("#prioridad").value = "";
+        //this.element.querySelector("#estado").value = "";
     }
 
     close() {
         this.clearInput();
         // Malabares para deshacer las event calls
         this.btn_holder.replaceChild(this.btn_holder.children[1].cloneNode(), this.btn_holder.children[1]);
-        this.btn_holder.replaceChild(this.btn_holder.children[2].cloneNode(), this.btn_holder.children[2]);
         // Ocultamos
         this.element.classList.remove("is-active");
     }

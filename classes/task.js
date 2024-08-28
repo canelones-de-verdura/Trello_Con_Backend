@@ -36,16 +36,22 @@ class taskCard {
             <header class="card-header">
                 <p class="card-header-title">${titulo}</p>
                 <div class="card-header-icon">
-                    <span class="material-symbols-outlined">task_alt</span>
+                    <span class="material-symbols-outlined">close</span>
                 </div>
             </header>
             <div class="card-content">
                 <div class="content">${desc}</div>
+                <div class="content">Asignado: ${asignado}</div>
+                <div class="content">${prioridad}</div>
             </div>
         `;
 
         this.state = estado;
         this.element.innerHTML = card_template;
         this.is_empty = false;
+    }
+
+    delete() {
+        this.element.parentNode.removeChild(this.element);
     }
 }
