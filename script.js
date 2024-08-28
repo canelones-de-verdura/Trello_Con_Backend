@@ -174,4 +174,9 @@ function crearCartaConModal() {
 
 acceptModalButton.addEventListener("click",crearCartaConModal);
 
-
+function borrarCarta(botonEliminar){
+    //Borra la carta 
+    const cartaPorEliminar= botonEliminar.parentElement.parentElement;
+    cartaPorEliminar.remove();
+    guardarCartas();
+  }
