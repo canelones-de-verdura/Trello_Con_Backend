@@ -1,57 +1,24 @@
 body {
     font-family: Ubuntu, sans-serif;
-    background-color: rgb(181, 191, 226);
-}
-
-.title-container {}
-
-.Titulo {
-    text-align: center;
-    font: oblique bold 120% cursive;
-    font-size: 300%;
-    color:rgb(42, 40, 81);
-}
-
-.column-container {
-    display: flex;
-    align-items: center;
-}
-
-.column {
-    width: 300px;
+    height: 100vh;
     padding: 20px;
-    border-radius: 15px;
-    margin-left: 5px;
-    margin-right: 5px;
-
-    color: rgb(198, 208, 245);
-    background-color: rgb(48, 52, 70);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
 }
 
-.NombreColumnas {
-    align-self: center;
-    font-weight: bold;
+.modal-card {
+    width: 80%;
+    height: 90%;
 }
 
-.tareas{
-    width: 300px;
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+@media (width >=768px) {
+    .modal-card {
+        width: 80%;
+        height: 80%;
+    }
+}
 
-    color: rgb(198, 208, 245);
-    background-color: rgb(87, 94, 128);
-
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-
-    
+@media (width >=1440px) {
+    .modal-card {
+        width: 80%;
+        height: 80%;
+    }
 }
