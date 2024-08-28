@@ -40,29 +40,19 @@ class taskMenu {
             delete_button.classList.add("is-hidden");
 
             confirm_button.addEventListener("click", () => {
-        // Input
-        const titulo = this.element.querySelector("#titulo").value;
-        const descripcion = this.element.querySelector("#descripcion").value;
-        const asignado = this.element.querySelector("#asignado").value;
-        const prioridad = this.element.querySelector("#prioridad").value;
-        const estado = this.element.querySelector("#estado").value;
-        //const fecha_limite = this.element.querySelectorAll("#fecha_limite").value;
-        const fecha_limite = null;
+                const args = this.recoverInput();
 
-                console.log(titulo);
-                console.log(descripcion);
-                console.log(asignado);
-                console.log(prioridad);
-                console.log(estado);
-                console.log(fecha_limite);
+                console.log(args);
 
-                task.fill(titulo, descripcion, asignado, prioridad, estado, fecha_limite);
-                dashboard.columns[0].placeCard(task);
+
+                task.fill(args[0], args[1], args[2], args[3], args[4], args[5]);
+                dashboard[args[4]].placeCard(task);
                 this.close();
             });
         } else {
             title = "Editar tarea";
             confirm_button.innerText = "Aceptar";
+            delete_button.innerText = "Eliminar Tarjeta";
             delete_button.classList.remove("is-hidden");
 
             delete_button.addEventListener("click", () => {
@@ -81,19 +71,31 @@ class taskMenu {
         this.element.classList.add("is-active");
     }
 
-    /*
     recoverInput() {
-        const titulo = modal.querySelector("#titulo").value;
-        const descripcion = modal.querySelector("#descripcion").value;
-        const asignado = modal.querySelector("#asignado").value;
-        const prioridad = modal.querySelector("#prioridad").value;
-        const estado = modal.querySelector("#estado").value;
-        const fecha_limite = modal.querySelectorAll("#fecha_limite").value;
+        // Input
+        const titulo = this.element.querySelector("#titulo").value;
+        const descripcion = this.element.querySelector("#descripcion").value;
+        const asignado = this.element.querySelector("#asignado").value;
+        const prioridad = this.element.querySelector("#prioridad").value;
+        const estado = this.element.querySelector("#estado").value;
+        //const fecha_limite = this.element.querySelectorAll("#fecha_limite").value;
+        const fecha_limite = null;
 
+        // TODO agregar validación del input
+
+        return [titulo, descripcion, asignado, prioridad, estado, fecha_limite];
     }
-    */
+
+    clearInput() {
+        this.element.querySelector("#titulo").value = "";
+        this.element.querySelector("#descripcion").value = "";
+        this.element.querySelector("#asignado").value = "";
+        this.element.querySelector("#prioridad").value = "";
+        this.element.querySelector("#estado").value = "";
+    }
 
     close() {
+        this.clearInput();
         // Malabares para deshacer las event calls
         this.btn_holder.replaceChild(this.btn_holder.children[1].cloneNode(), this.btn_holder.children[1]);
         this.btn_holder.replaceChild(this.btn_holder.children[2].cloneNode(), this.btn_holder.children[2]);

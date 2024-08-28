@@ -1,5 +1,5 @@
 class dashboardColumn {
-    constructor(name) {
+    constructor(name, id) {
         this.element = document.createElement("div");
         this.element.classList.add(
             "column",
@@ -8,7 +8,7 @@ class dashboardColumn {
             "is-flex-direction-column",
             "is-align-items-center"
         );
-        this.element.setAttribute("id", name.toLowerCase().replaceAll(" ", "-"));
+        this.element.setAttribute("id", id);
         this.element.innerHTML = `<h2 class="subtitle is-3">${name}</h2>`;
 
         // Configuramos eventos
@@ -44,16 +44,11 @@ class taskDashboard {
         );
     }
 
-    createColumns(column_names) {
-        this.columns = [];
+    setColumns(column_names) {
         column_names.forEach(name => {
-            this.columns.push(new dashboardColumn(name));
+            const name_low = name.toLowerCase().replaceAll(" ", "-");
+            this[name_low] = new dashboardColumn(name, name_low);
+            this.element.appendChild(this[name_low].element);
         })
-    }
-
-    setColumns() {
-        this.columns.forEach(column => {
-            this.element.appendChild(column.element)
-        });
     }
 }
