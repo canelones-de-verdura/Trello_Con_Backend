@@ -4,8 +4,9 @@ const menu = new taskMenu(document.getElementById("task-menu"));
 const theme_switch = document.getElementById("theme_switcher_btn");
 const add_task_btn = document.getElementById("add_task_btn");
 
-dashboard.createColumns(["Backlog", "To-Do", "In Progress", "Blocked", "Done"]);
-dashboard.setColumns();
+dashboard.setColumns(["Backlog", "To-Do", "In Progress", "Blocked", "Done"]);
+
+console.log(dashboard)
 
 // Eventos
 theme_switch.addEventListener("click", () => {
