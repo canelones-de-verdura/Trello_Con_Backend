@@ -86,7 +86,16 @@ class taskMenu {
         return [titulo, descripcion, asignado, prioridad, estado, fecha_limite];
     }
 
+    clearInput() {
+        this.element.querySelector("#titulo").value = "";
+        this.element.querySelector("#descripcion").value = "";
+        this.element.querySelector("#asignado").value = "";
+        this.element.querySelector("#prioridad").value = "";
+        this.element.querySelector("#estado").value = "";
+    }
+
     close() {
+        this.clearInput();
         // Malabares para deshacer las event calls
         this.btn_holder.replaceChild(this.btn_holder.children[1].cloneNode(), this.btn_holder.children[1]);
         this.btn_holder.replaceChild(this.btn_holder.children[2].cloneNode(), this.btn_holder.children[2]);
