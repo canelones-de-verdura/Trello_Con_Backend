@@ -14,7 +14,6 @@ body {
         width: 80%;
         height: 80%;
     }
-    
 }
 
 /*
@@ -30,11 +29,59 @@ body {
 }
 */
 
-@media (min-width >=1440px) {
+@media (width >=1440px) {
     .modal-card {
         width: 80%;
         height: 80%;
     }
+
+    .dashboard {
+        overflow-x: scroll;
+        scrollbar-width: none;
+        white-space: nowrap;
+        height: 83vh;
+
+        /*margin-left: 25px;*/
+        /*margin-right: 25px;*/
+        /*margin-top: 0px;*/
+        /*margin-bottom: 0px;*/
+
+        padding: 20px;
+
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 10px;
+        border-color: black;
+    }
+
+    .custom-column {
+        display: inline-flex;
+        flex-direction: column;
+
+        background-color: #f0f0f0;
+
+        /*overflow-y: scroll;*/
+        /*scrollbar-width: none;*/
+        max-height: 94%;
+
+        width: 400px;
+        padding: 10px;
+        margin: 25px 25px 25px 25px;
+
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 10px;
+        border-color: black;
+    }
+
+    .inner-column {
+        background-color: red; /* PARA COMPROBAR QUE LAS TARJETAS SE COLOCAN BIEN */
+        overflow-y: scroll;
+        scrollbar-width: none;
+        max-height: 100%;
+    }
+
+    .card {
+        align-self: center;
+    }
 }
-
-

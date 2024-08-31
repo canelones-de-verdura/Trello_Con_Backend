@@ -3,14 +3,20 @@ class dashboardColumn {
         // html
         this.element = document.createElement("div");
         this.element.classList.add(
-            "column",
-            "has-background-primary",
-            "is-flex",
-            "is-flex-direction-column",
-            "is-align-items-center"
+            "custom-column"
+            //"column",
+            //"has-background-light",
+            //"is-flex",
+            //"is-flex-direction-column",
+            //"is-align-items-center"
         );
         this.element.setAttribute("id", id);
         this.element.innerHTML = `<h2 class="subtitle is-3">${name}</h2>`;
+
+        // parte donde van las tarjetas
+        const inner_area = document.createElement("div");
+        inner_area.classList.add("inner-column");
+        this.element.appendChild(inner_area);
 
         // Configuramos eventos
         this.element.addEventListener('dragover', (event) => {
@@ -23,11 +29,27 @@ class dashboardColumn {
             const dragged_element = document.getElementById(dragged_element_id); // Buscar el elemento arrastrado por su ID
 
             if (dragged_element) {
-                this.element.appendChild(dragged_element); // Mover el elemento arrastrado a la nueva columna
+                inner_area.appendChild(dragged_element); // Mover el elemento arrastrado a la nueva columna
             } else {
                 console.error('El elemento arrastrado no existe en el DOM:', dragged_element_id);
             }
         });
+        //// Configuramos eventos
+        //this.element.addEventListener('dragover', (event) => {
+        //    event.preventDefault(); // Necesario para permitir el drop
+        //});
+        //
+        //this.element.addEventListener('drop', (event) => {
+        //    event.preventDefault();
+        //    const dragged_element_id = event.dataTransfer.getData('text/plain'); // Obtener el ID del elemento arrastrado
+        //    const dragged_element = document.getElementById(dragged_element_id); // Buscar el elemento arrastrado por su ID
+        //
+        //    if (dragged_element) {
+        //        this.element.appendChild(dragged_element); // Mover el elemento arrastrado a la nueva columna
+        //    } else {
+        //        console.error('El elemento arrastrado no existe en el DOM:', dragged_element_id);
+        //    }
+        //});
     }
 }
 
@@ -39,9 +61,10 @@ class taskDashboard {
         // html
         this.element = HTML_Element;
         this.element.classList.add(
-            "columns",
-            "is-multiline",
-            "is-gap-3"
+            "dashboard"
+            //"columns",
+            //"is-multiline",
+            //"is-gap-3"
         );
     }
 
@@ -56,7 +79,7 @@ class taskDashboard {
 
     addTask(task, state) {
         this.contents.push(task)
-        this[state].element.appendChild(task.element);
+        this[state].element.querySelector(".inner-column").appendChild(task.element);
 
         //// Evento para abrir el modal de edición.
         //this.element.querySelector(".card-content").addEventListener("click", () => modal.spawn(task));

@@ -55,25 +55,35 @@ class taskCard {
             <header class="card-header">
                 <p class="card-header-title">${titulo}</p>
                 <div class="card-header-icon">
-                    <span class="material-symbols-outlined">close</span>
+                    <!--<span class="material-symbols-outlined">close</span>-->
+                    <button class="delete"></button>
                 </div>
             </header>
             <div class="card-content">
                 <div class="content">${desc}</div>
-                <div class="content">Asignado: ${asignado}</div>
-                <div class="content">${prioridad}</div>
-                <div class="content">Fecha: ${fecha_limite.toString()}</div>
+                <div class="tags">
+                    <span class="tag is info is-light is-medium">
+                        <span class="material-symbols-outlined">schedule</span>
+                        ${fecha_limite.toString()}
+                    </span>
+                    <span class="tag is-info is-light is-medium">
+                        <span class="material-symbols-outlined">account_circle</span>
+                        ${asignado}
+                    </span>
+                    <span class="tag is-light is-medium" id="prioridad">${prioridad}</span>
+                </div>
             </div>
-            <!--<div class="card-footer">-->
-            <!--    <div class="card-header-icon">-->
-            <!--        <span class="material-symbols-outlined">edit_square</span>-->
-            <!--    </div>-->
-            <!--    <div class="card-header-icon">-->
-            <!--        <span class="material-symbols-outlined">delete</span>-->
-            <!--    </div>-->
-            <!--</div>-->
         `;
 
+        // Coloreamos el tag con la prioridad
+        switch (prioridad) {
+            case "Alta":
+                this.element.querySelector("#prioridad").classList.add("is-danger");
+            case "Media":
+                this.element.querySelector("#prioridad").classList.add("is-warning");
+            case "Baja":
+                this.element.querySelector("#prioridad").classList.add("is-success");
+        }
         // Marcamos la tarjeta como rellena
         this.is_empty = false;
     }
