@@ -5,10 +5,20 @@
  */
 class taskCard {
     constructor() {
+        // Indica si la tarjeta está recién creada
         this.is_empty = true;
-        this.state = -1;
-        this.element = document.createElement("div")
 
+        // Info de la tarea
+        this.titulo = null;
+        this.desc = null;
+        this.asignado = null;
+        this.prioridad = null;
+        this.estado = null;
+        this.fecha_limite = null;
+
+
+        // Elemento HTML, con sus atributos correspondientes
+        this.element = document.createElement("div")
         this.element.classList.add("card");
         this.element.setAttribute("draggable", "true");
         this.element.setAttribute("id", crypto.randomUUID());
@@ -21,18 +31,27 @@ class taskCard {
 
         this.element.addEventListener('dragend', () => {
             this.element.classList.remove('dragging');
-        });
 
-        // Falta evento para clickear y abrir el modal de edición.
-        // No va a acá.
+            // actualizamos estado
+            this.estado = this.element.parentNode.getAttribute("id");
+        });
     }
 
-    // TODO hacer bien las cosas
+    // TODO hacer bien la template, que se ve como el tuje
     /***
      * Método para rellenar la tarjeta. Se usa el mismo al crearla por primera vez o editarla
      */
     fill(titulo, desc, asignado, prioridad, estado, fecha_limite) {
-        const card_template = `
+        // Llenamos los atributos
+        this.titulo = titulo;
+        this.desc = desc;
+        this.asignado = asignado;
+        this.prioridad = prioridad;
+        this.estado = estado;
+        this.fecha_limite = fecha_limite;
+
+        // Llenamos el html
+        this.element.innerHTML = `
             <header class="card-header">
                 <p class="card-header-title">${titulo}</p>
                 <div class="card-header-icon">
@@ -43,11 +62,19 @@ class taskCard {
                 <div class="content">${desc}</div>
                 <div class="content">Asignado: ${asignado}</div>
                 <div class="content">${prioridad}</div>
+                <div class="content">Fecha: ${fecha_limite.toString()}</div>
             </div>
+            <!--<div class="card-footer">-->
+            <!--    <div class="card-header-icon">-->
+            <!--        <span class="material-symbols-outlined">edit_square</span>-->
+            <!--    </div>-->
+            <!--    <div class="card-header-icon">-->
+            <!--        <span class="material-symbols-outlined">delete</span>-->
+            <!--    </div>-->
+            <!--</div>-->
         `;
 
-        this.state = estado;
-        this.element.innerHTML = card_template;
+        // Marcamos la tarjeta como rellena
         this.is_empty = false;
     }
 
