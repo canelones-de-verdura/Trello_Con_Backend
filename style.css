@@ -1,3 +1,13 @@
+:root {
+    --column-background: hsl(0, 0%, 96%);
+    --outline-color: black;
+}
+
+.theme-dark {
+    --column-background: hsl(0, 0%, 21%);
+    --outline-color: white;
+}
+
 body {
     font-family: Ubuntu, sans-serif;
     height: 100vh;
@@ -18,7 +28,7 @@ body {
 .custom-column {
     display: inline-flex;
     flex-direction: column;
-    background-color: hsl(0, 0%, 96%);
+    background-color: var(--column-background);
     max-height: 400px;
     width: 320px;
     padding: 10px;
@@ -26,7 +36,7 @@ body {
     border-style: solid;
     border-width: 1px;
     border-radius: 10px;
-    border-color: black;
+    border-color: var(--outline-color);
 }
 
 .inner-column {
@@ -107,7 +117,7 @@ body {
         border-style: solid;
         border-width: 1px;
         border-radius: 10px;
-        border-color: black;
+        border-color: var(--outline-color);
     }
 
     .custom-column {
