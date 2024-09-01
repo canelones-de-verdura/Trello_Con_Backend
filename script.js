@@ -25,3 +25,5 @@ add_task_btn.addEventListener("click", () => {
     const new_task = new taskCard();
     menu.spawn(new_task, dashboard); // Rellenamos la tarea
 });
+
+
