@@ -2,6 +2,7 @@ body {
     font-family: Ubuntu, sans-serif;
     height: 100vh;
     padding: 20px;
+    position: relative;
 }
 
 .modal-card {
@@ -9,25 +10,86 @@ body {
     height: 90%;
 }
 
+.dashboard {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.custom-column {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: hsl(0, 0%, 96%);
+    max-height: 400px;
+    width: 320px;
+    padding: 10px;
+    margin: 25px 25px 25px 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: black;
+}
+
+.inner-column {
+    background-color: inherit;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    max-height: 100%;
+}
+
+.card {
+    align-self: center;
+    box-shadow: none;
+}
+
+#theme_switcher_btn {
+        position: static;
+        border: none;
+        box-shadow: none;
+        padding: 0px;
+        background-color: inherit;
+}
+
+#add_task_btn {
+    position: fixed;
+    /* la letra dice que hay que usar position: absolute. 
+     * Intentamos, pero el botón se desplazaba al scrollear
+     */
+    z-index: 9999;
+    border-radius: 50px;
+    padding: 20px;
+    /*background-color: lightgreen;*/
+    bottom: 20px;
+    right: 20px;
+}
+
 @media (width >=768px) {
     .modal-card {
         width: 80%;
         height: 80%;
     }
-}
 
-/*
-.columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+    .dashboard {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
 
-.column {
-    flex: 1 1 30%;
-    min-width: 250px;
+    .custom-column {
+        max-height: 400px;
+        width: 230px;
+        margin: 5px 5px 5px 5px;
+    }
+
+    #add_task_btn {
+        position: static;
+        border: none;
+        box-shadow: none;
+        padding: 0px;
+        background-color: inherit;
+        margin-left: 10px;
+    }
 }
-*/
 
 @media (width >=1440px) {
     .modal-card {
@@ -36,18 +98,12 @@ body {
     }
 
     .dashboard {
+        display: block;
         overflow-x: scroll;
         scrollbar-width: none;
         white-space: nowrap;
         height: 83vh;
-
-        /*margin-left: 25px;*/
-        /*margin-right: 25px;*/
-        /*margin-top: 0px;*/
-        /*margin-bottom: 0px;*/
-
         padding: 20px;
-
         border-style: solid;
         border-width: 1px;
         border-radius: 10px;
@@ -55,33 +111,7 @@ body {
     }
 
     .custom-column {
-        display: inline-flex;
-        flex-direction: column;
-
-        background-color: #f0f0f0;
-
-        /*overflow-y: scroll;*/
-        /*scrollbar-width: none;*/
         max-height: 94%;
-
         width: 400px;
-        padding: 10px;
-        margin: 25px 25px 25px 25px;
-
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 10px;
-        border-color: black;
-    }
-
-    .inner-column {
-        background-color: red; /* PARA COMPROBAR QUE LAS TARJETAS SE COLOCAN BIEN */
-        overflow-y: scroll;
-        scrollbar-width: none;
-        max-height: 100%;
-    }
-
-    .card {
-        align-self: center;
     }
 }
