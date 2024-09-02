@@ -62,9 +62,6 @@ class taskDashboard {
         this.element = HTML_Element;
         this.element.classList.add(
             "dashboard"
-            //"columns",
-            //"is-multiline",
-            //"is-gap-3"
         );
     }
 
@@ -79,29 +76,14 @@ class taskDashboard {
     }
 
     addTask(task, state) {
-        
         this.contents.push(task)
         this[state].element.querySelector(".inner-column").appendChild(task.element);
-        
-        //// Evento para abrir el modal de edición.
-        //this.element.querySelector(".card-content").addEventListener("click", () => modal.spawn(task));
-
-        // Evento para eliminar la tarea.
-        //task.element.querySelector(".card-header-icon").addEventListener("click", () => this.deleteTask(task));
-    
     }
 
     deleteTask(task) {
         if (this.contents.includes(task)) {
             task.delete();
             this.contents = this.contents.filter(keep => keep !== task);
-            /*
-            // debug
-            if (this.contents.includes(task))
-                console.log("No se borró!");
-            */
-            // Guarda las tareas cada vez que se elimina una
-            this.saveTasks();
         }
     }
 
