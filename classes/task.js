@@ -9,12 +9,12 @@ class taskCard {
     this.is_empty = true;
 
     // Info de la tarea
-    this.titulo = null;
-    this.desc = null;
-    this.asignado = null;
-    this.prioridad = null;
-    this.estado = null;
-    this.fecha_limite = null;
+    this.title = null;
+    this.description = null;
+    this.assignedTo = null;
+    this.priority = null;
+    this.status = null;
+    this.endDate = null;
 
     // Elemento HTML, con sus atributos correspondientes
     this.element = document.createElement("div");
@@ -32,7 +32,7 @@ class taskCard {
       this.element.classList.remove("dragging");
 
       // actualizamos estado
-      this.estado = this.element.parentNode.getAttribute("id");
+      this.status = this.element.parentNode.getAttribute("id");
     });
   }
 
@@ -42,12 +42,12 @@ class taskCard {
    */
   fill(titulo, desc, asignado, prioridad, estado, fecha_limite) {
     // Llenamos los atributos
-    this.titulo = titulo;
-    this.desc = desc;
-    this.asignado = asignado;
-    this.prioridad = prioridad;
-    this.estado = estado;
-    this.fecha_limite = fecha_limite;
+    this.title = titulo;
+    this.description = desc;
+    this.assignedTo = asignado;
+    this.priority = prioridad;
+    this.status = estado;
+    this.endDate = fecha_limite;
 
     // Llenamos el html
     this.element.innerHTML = `
