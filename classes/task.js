@@ -62,7 +62,7 @@ class taskCard {
                 <div class="tags">
                     <span class="tag is info is-light is-medium">
                         <span class="material-symbols-outlined">schedule</span>
-                        ${this.endDate.toString()}
+                        ${this.endDate.toLocaleString("es-UY")}
                     </span>
                     <span class="tag is-info is-light is-medium">
                         <span class="material-symbols-outlined">account_circle</span>
