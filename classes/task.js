@@ -1,5 +1,4 @@
 /***
- * SUJETO A CAMBIOS
  * Clase que "envuelve" una tarjeta (un div con cosas adentro).
  * El único objetivo es estructurar la lógica.
  */
@@ -36,7 +35,6 @@ class taskCard {
     });
   }
 
-  // TODO hacer bien la template, que se ve como el tuje
   /***
    * Método para rellenar la tarjeta. Se usa el mismo al crearla por primera vez o editarla
    */
@@ -52,22 +50,22 @@ class taskCard {
     // Llenamos el html
     this.element.innerHTML = `
             <header class="card-header">
-                <p class="card-header-title">${titulo}</p>
+                <p class="card-header-title">${this.title}</p>
                 <div class="card-header-icon">
                     <!--<span class="material-symbols-outlined">close</span>-->
                     <button class="delete"></button>
                 </div>
             </header>
             <div class="card-content">
-                <div class="content">${desc}</div>
+                <div class="content">${this.description}</div>
                 <div class="tags">
                     <span class="tag is info is-light is-medium">
                         <span class="material-symbols-outlined">schedule</span>
-                        ${fecha_limite.toString()}
+                        ${this.endDate.toString()}
                     </span>
                     <span class="tag is-info is-light is-medium">
                         <span class="material-symbols-outlined">account_circle</span>
-                        ${asignado}
+                        ${this.assignedTo}
                     </span>
                     <span class="tag is-light is-medium" id="prioridad">${prioridad}</span>
                 </div>
@@ -75,7 +73,7 @@ class taskCard {
         `;
 
     // Coloreamos el tag con la prioridad
-    switch (prioridad) {
+    switch (this.priority) {
       case "Alta":
         this.element.querySelector("#prioridad").classList.add("is-danger");
       case "Media":
@@ -91,24 +89,3 @@ class taskCard {
     this.element.parentNode.removeChild(this.element);
   }
 }
-
-const columns = document.querySelectorAll(".custom-column");
-
-columns.forEach((column) => {
-  column.addEventListener("dragover", (event) => {
-    event.preventDefault();
-    column.classList.add("drag-over"); // Añade la clase 'drag-over' al arrastrar
-  });
-
-  column.addEventListener("dragleave", () => {
-    column.classList.remove("drag-over"); // Elimina la clase 'drag-over' al salir
-  });
-
-  column.addEventListener("drop", (event) => {
-    event.preventDefault();
-    const id = event.dataTransfer.getData("text/plain");
-    const draggedElement = document.getElementById(id);
-    column.classList.remove("drag-over"); // Elimina la clase 'drag-over' al soltar
-    column.appendChild(draggedElement);
-  });
-});
