@@ -1,4 +1,4 @@
-const column_categories = ["Backlog", "To-Do", "In Progress", "Blocked", "Done"];
+const column_categories = ["Backlog", "To Do", "In Progress", "Blocked", "Done"];
 
 // Recuperamos elementos
 const dashboard = new taskDashboard(document.getElementById("task-dashboard"));

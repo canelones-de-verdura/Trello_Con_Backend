@@ -1,11 +1,11 @@
 class dashboardColumn {
-    constructor(name, id) {
+    constructor(name) {
         // html
         this.element = document.createElement("div");
         this.element.classList.add(
             "custom-column"
         );
-        this.element.setAttribute("id", id);
+        this.element.setAttribute("id", name);
         this.element.innerHTML = `<h2 class="subtitle is-3">${name}</h2>`;
 
         // parte donde van las tarjetas
@@ -48,14 +48,12 @@ class taskDashboard {
     // crea las columnas donde se clasifican las tareas.
     setColumns(column_names) {
         column_names.forEach(name => {
-            const name_low = name.toLowerCase().replaceAll(" ", "-");
-            this[name_low] = new dashboardColumn(name, name_low);
-            this.element.appendChild(this[name_low].element);
+            this[name] = new dashboardColumn(name);
+            this.element.appendChild(this[name].element);
         });
     }
 
-    addTask(task, state) {
-        this.contents.push(task)
+    addTaskToBoard(task, state) {
         this[state].element.querySelector(".inner-column").appendChild(task.element);
     }
 
@@ -71,14 +69,25 @@ class taskDashboard {
         task.element.querySelector(".card-content").addEventListener("click", () => modal.spawn(task, this));
     }
 
+    /***
+     * Recupera las tareas desde el sv, carga cada una en un objeto,
+     * las guarda en una lista y finalmente las muestra en la pagina.
+     *  @param url 
+     */
     async getTasks(url) {
         const response = await fetch(url);
         const status = `dashboard.getTasks(): ${response.status}, ${response.statusText}`;
         const tasks = await response.json();
 
         console.log(status);
-        if (tasks) // Vale la pena este chequeo?
-            this.contents = tasks;
-
+        if (!tasks) // Vale la pena este chequeo?
+            return;
+            
+        this.contents = tasks;
+        this.contents.forEach(task => {
+            const card = new taskCard();
+            card.fromJSON(task);
+            this.addTaskToBoard(card, card.status);
+        });
     }
 }

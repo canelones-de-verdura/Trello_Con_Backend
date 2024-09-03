@@ -8,6 +8,7 @@ class taskCard {
         this.is_empty = true;
 
         // Info de la tarea
+        this.id = crypto.randomUUID();
         this.title = null;
         this.description = null;
         this.assignedTo = null;
@@ -19,7 +20,7 @@ class taskCard {
         this.element = document.createElement("div");
         this.element.classList.add("card");
         this.element.setAttribute("draggable", "true");
-        this.element.setAttribute("id", crypto.randomUUID());
+        this.element.setAttribute("id", this.id);
 
         // Añadir eventos de arrastrar y soltar a la tarea, es necesario que sea cuando son creados porque sino no lo toma
         this.element.addEventListener("dragstart", (event) => {
@@ -83,6 +84,33 @@ class taskCard {
         }
         // Marcamos la tarjeta como rellena
         this.is_empty = false;
+    }
+
+    toJSON() {
+        return `
+            {
+                id: "${this.id}",
+                title: "${this.title}",
+                description: "${this.description}",
+                assignedTo: "${this.assignedTo}",
+                startDate: "",
+                endDate: "31/12/2024",
+                status: "${this.status}",
+                priority: "${this.status}",
+                comments: [],
+            }
+        `;
+    }
+
+    fromJSON(json_task) {
+        const titulo = json_task.title;
+        const desc = json_task.description;
+        const asignado = json_task.assignedTo;
+        const prioridad = json_task.priority;
+        const estado = json_task.status;
+        const fecha_limite = json_task.endDate;
+        
+        this.fill(titulo, desc, asignado, prioridad, estado, fecha_limite);
     }
 
     delete() {
