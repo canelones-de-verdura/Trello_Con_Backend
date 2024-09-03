@@ -8,6 +8,9 @@ const add_task_btn = document.getElementById("add_task_btn");
 
 dashboard.setColumns(column_categories);
 
+const url = "http://localhost:3000/api/tasks"
+dashboard.getTasks(url);
+
 function editTask(task) {
     menu.spawn(task);
 }

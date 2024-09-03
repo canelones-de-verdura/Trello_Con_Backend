@@ -16,10 +16,17 @@ class dashboardColumn {
         // Configuramos eventos
         this.element.addEventListener('dragover', (event) => {
             event.preventDefault(); // Necesario para permitir el drop
+            this.element.classList.add("drag-over"); // Añade la clase 'drag-over' al arrastrar
+        });
+
+        this.element.addEventListener("dragleave", () => {
+            this.element.classList.remove("drag-over"); // Elimina la clase 'drag-over' al salir
         });
 
         this.element.addEventListener('drop', (event) => {
             event.preventDefault();
+            this.element.classList.remove("drag-over"); // Elimina la clase 'drag-over' al salir
+
             const dragged_element_id = event.dataTransfer.getData('text/plain'); // Obtener el ID del elemento arrastrado
             const dragged_element = document.getElementById(dragged_element_id); // Buscar el elemento arrastrado por su ID
 
@@ -41,13 +48,9 @@ class taskDashboard {
         this.element = HTML_Element;
         this.element.classList.add(
             "dashboard"
-            //"columns",
-            //"is-multiline",
-            //"is-gap-3"
         );
     }
 
-    
     // crea las columnas donde se clasifican las tareas.
     setColumns(column_names) {
         column_names.forEach(name => {
@@ -72,5 +75,16 @@ class taskDashboard {
     setCalls(task, modal) {
         task.element.querySelector(".card-header-icon").addEventListener("click", () => this.deleteTask(task));
         task.element.querySelector(".card-content").addEventListener("click", () => modal.spawn(task, this));
+    }
+
+    async getTasks(url) {
+        const response = await fetch(url);
+        const status = `dashboard.getTasks(): ${response.status}, ${response.statusText}`;
+        const tasks = await response.json();
+
+        console.log(status);
+        if (tasks) // Vale la pena este chequeo?
+            this.contents = tasks;
+
     }
 }
