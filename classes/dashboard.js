@@ -16,16 +16,10 @@ class dashboardColumn {
         // Configuramos eventos
         this.element.addEventListener('dragover', (event) => {
             event.preventDefault(); // Necesario para permitir el drop
-            this.element.classList.add("drag-over"); // Añade la clase 'drag-over' al arrastrar
-        });
-
-        this.element.addEventListener("dragleave", () => {
-            this.element.classList.remove("drag-over"); // Elimina la clase 'drag-over' al salir
         });
 
         this.element.addEventListener('drop', (event) => {
             event.preventDefault();
-            this.element.classList.remove("drag-over"); // Elimina la clase 'drag-over' al salir
 
             const dragged_element_id = event.dataTransfer.getData('text/plain'); // Obtener el ID del elemento arrastrado
             const dragged_element = document.getElementById(dragged_element_id); // Buscar el elemento arrastrado por su ID
