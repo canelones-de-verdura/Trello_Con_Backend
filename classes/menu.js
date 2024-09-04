@@ -1,6 +1,4 @@
-// TODO leer los inputs del usuario
 /***
- * SUJETO A CAMBIOS
  * Clase que "envuelve" el modal.
  * El único objetivo es estructurar la lógica.
  */
@@ -44,16 +42,17 @@ class taskMenu {
 
         // Evento
         confirm_button.addEventListener("click", () => {
-            console.log(task)
-            console.log(dashboard)
-
             const args = this.recoverInput();
 
             if (args !== null) {
-                task.fill(args[0], args[1], args[2], args[3], args[4], args[5], this);
-                dashboard.deleteTask(task); // Por si estamos modificando la tarea, y se cambió de columna
-                dashboard.addTask(task, args[4]);
-                dashboard.setCalls(task, this);
+                //dashboard.deleteTask(task); // Por si estamos modificando la tarea, y se cambió de columna
+                if (task.is_empty) {
+                    task.fill(0, args[0], args[1], args[2], args[3], args[4], args[5]);
+                    dashboard.addTask(task);
+                } else {
+                    task.fill(task.id, args[0], args[1], args[2], args[3], args[4], args[5]);
+                    dashboard.editTask(task);
+                }
 
                 this.close();
             }
@@ -73,13 +72,17 @@ class taskMenu {
         const asignado = this.element.querySelector("#asignado").value;
         const prioridad = this.element.querySelector("#prioridad").value;
         const estado = this.element.querySelector("#estado").value;
-        const fecha_limite = this.element.querySelector("#fecha_limite").value;
+        let fecha_limite = this.element.querySelector("#fecha_limite").value;
 
         if (!titulo || !descripcion || !asignado || !prioridad || !estado || !fecha_limite) {
             alert("Ingrese todos los datos.");
             return null;
         }
 
+        console.log(fecha_limite)
+        // Malabares para crear la fecha, de nuevo
+        fecha_limite = new Date(fecha_limite.replaceAll('-', '/'));
+        console.log(fecha_limite)
         return [titulo, descripcion, asignado, prioridad, estado, fecha_limite];
     }
 
@@ -93,12 +96,12 @@ class taskMenu {
     }
 
     fillInput(task) {
-        this.element.querySelector("#titulo").value = task.titulo;
-        this.element.querySelector("#descripcion").value = task.desc;
-        this.element.querySelector("#asignado").value = task.asignado;
-        this.element.querySelector("#prioridad").value = task.prioridad;
-        this.element.querySelector("#estado").value = task.estado;
-        this.element.querySelector("#fecha_limite").value = task.fecha_limite;
+        this.element.querySelector("#titulo").value = task.title;
+        this.element.querySelector("#descripcion").value = task.description;
+        this.element.querySelector("#asignado").value = task.assignedTo;
+        this.element.querySelector("#prioridad").value = task.priority;
+        this.element.querySelector("#estado").value = task.status;
+        this.element.querySelector("#fecha_limite").value = task.formatDate().split('/').reverse().join('-');
     }
 
     close() {
