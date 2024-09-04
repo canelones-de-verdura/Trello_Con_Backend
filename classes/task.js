@@ -8,7 +8,7 @@ class taskCard {
         this.is_empty = true;
 
         // Info de la tarea
-        this.id = crypto.randomUUID();
+        this.id = null;
         this.title = null;
         this.description = null;
         this.assignedTo = null;
@@ -16,31 +16,18 @@ class taskCard {
         this.status = null;
         this.endDate = null;
 
-        // Elemento HTML, con sus atributos correspondientes
+        // Elemento HTML, con sus atributos correspondientes.
         this.element = document.createElement("div");
         this.element.classList.add("card");
         this.element.setAttribute("draggable", "true");
-        this.element.setAttribute("id", this.id);
-
-        // Añadir eventos de arrastrar y soltar a la tarea, es necesario que sea cuando son creados porque sino no lo toma
-        this.element.addEventListener("dragstart", (event) => {
-            event.dataTransfer.setData("text/plain", event.target.id);
-            this.element.classList.add("dragging");
-        });
-
-        this.element.addEventListener("dragend", () => {
-            this.element.classList.remove("dragging");
-
-            // actualizamos estado
-            this.status = this.element.parentNode.getAttribute("id");
-        });
     }
 
     /***
      * Método para rellenar la tarjeta. Se usa el mismo al crearla por primera vez o editarla
      */
-    fill(titulo, desc, asignado, prioridad, estado, fecha_limite) {
+    fill(id, titulo, desc, asignado, prioridad, estado, fecha_limite) {
         // Llenamos los atributos
+        this.id = id;
         this.title = titulo;
         this.description = desc;
         this.assignedTo = asignado;
@@ -53,7 +40,6 @@ class taskCard {
             <header class="card-header">
                 <p class="card-header-title">${this.title}</p>
                 <div class="card-header-icon">
-                    <!--<span class="material-symbols-outlined">close</span>-->
                     <button class="delete"></button>
                 </div>
             </header>
@@ -62,13 +48,13 @@ class taskCard {
                 <div class="tags">
                     <span class="tag is info is-light is-medium">
                         <span class="material-symbols-outlined">schedule</span>
-                        ${this.endDate.toLocaleString("es-UY")}
+                        ${this.formatDate()}
                     </span>
                     <span class="tag is-info is-light is-medium">
                         <span class="material-symbols-outlined">account_circle</span>
                         ${this.assignedTo}
                     </span>
-                    <span class="tag is-light is-medium" id="prioridad">${prioridad}</span>
+                    <span class="tag is-light is-medium" id="prioridad">${this.priority}</span>
                 </div>
             </div>
         `;
@@ -84,33 +70,39 @@ class taskCard {
         }
         // Marcamos la tarjeta como rellena
         this.is_empty = false;
+
+        // Seteamos la id en el html
+        this.element.setAttribute("id", this.id);
     }
 
     toJSON() {
-        return `
-            {
-                id: "${this.id}",
-                title: "${this.title}",
-                description: "${this.description}",
-                assignedTo: "${this.assignedTo}",
-                startDate: "",
-                endDate: "31/12/2024",
-                status: "${this.status}",
-                priority: "${this.status}",
-                comments: [],
-            }
-        `;
+        return {
+            title: this.title,
+            description: this.description,
+            assignedTo: this.assignedTo,
+            startDate: "",
+            endDate: this.formatDate(),
+            status: this.status,
+            priority: this.priority,
+            comments: [],
+        };
     }
 
     fromJSON(json_task) {
+        const id = json_task.id;
         const titulo = json_task.title;
         const desc = json_task.description;
         const asignado = json_task.assignedTo;
         const prioridad = json_task.priority;
         const estado = json_task.status;
-        const fecha_limite = json_task.endDate;
-        
-        this.fill(titulo, desc, asignado, prioridad, estado, fecha_limite);
+        // Malabares para crear la fecha
+        const fecha_limite = new Date(json_task.endDate.split('/').reverse().join('/'));
+
+        this.fill(id, titulo, desc, asignado, prioridad, estado, fecha_limite);
+    }
+
+    formatDate() {
+        return this.endDate.toLocaleString("en-GB", { timeZone: "America/Montevideo" }).split(",")[0];
     }
 
     delete() {
